@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "local-execution-iceberg-tables"
+version = "0.1.0"
+description = ""
+authors = ["Hannes De Smet <hannes.desmet@dataminded.be>"]
+readme = "README.md"
+packages = [{ include = "local_execution_iceberg_tables" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pendulum = "^2.1.2"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+pyspark = "^3.4"
+black = "^23.7.0"
+chispa = "^0.9.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
