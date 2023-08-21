@@ -56,7 +56,7 @@ def cleanup_warehouse(request):
         shutil.rmtree(warehouse_path)
 
 
-def test_create_iceberg_table_from_dataframe_simple(spark, cleanup_warehouse):
+def test_create_iceberg_table_from_dataframe(spark, cleanup_warehouse):
     mock_dataframe = spark.createDataFrame(
         data=[
             ("1", "a",),
@@ -96,7 +96,7 @@ class TestWindMillPowerTable:
         result: DataFrame = spark.table(WindMillPowerTable.table_name)
         assert_approx_df_equality(result, expected, precision=1e-5, ignore_nullable=True)
 
-    def test_merge_wind_mill_power_table(self, spark, windmill_power_table):
+    def test_merge_wind_mill_power_table(self, spark, windmill_power_table,cleanup_warehouse):
         data = [
             # Existing measurement but the same timestamp -> not update
             WindmillMeasurement("1", datetime(2023, 1, 1, 0, 0, 0), 2.0),

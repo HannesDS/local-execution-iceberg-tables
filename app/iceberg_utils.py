@@ -6,7 +6,7 @@ from pyspark.sql import DataFrame, SparkSession
 def create_iceberg_table_from_dataframe(spark: SparkSession, data: DataFrame, table_name: str,
                                         database_name: str, ):
     data.createOrReplaceTempView("dataframe")
-    query: str = construct_create_or_replace_table_query_simple(
+    query: str = construct_create_or_replace_table_query(
         glue_database=database_name,
         glue_table=table_name,
     )
@@ -24,7 +24,7 @@ def table_exists_in_database(
     return table in table_names_in_db
 
 
-def construct_create_or_replace_table_query_simple(
+def construct_create_or_replace_table_query(
         glue_database: str,
         glue_table: str,
 ):
