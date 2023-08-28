@@ -36,10 +36,7 @@ def spark() -> SparkSession:
     )
     spark_builder.config(f"spark.sql.catalog.local.type", "hadoop")
     spark_builder.config(f"spark.sql.catalog.local.warehouse", warehouse_path)
-    spark_builder.config(
-        "spark.jars",
-        "./resources/iceberg-spark-runtime-3.4_2.12-1.3.0.jar",
-    )
+    spark_builder.config('spark.jars.packages', 'org.apache.iceberg:iceberg-spark-runtime-3.4_2.12:1.3.0')
     spark_builder.config("spark.sql.catalog.local.default.write.metadata-flush-after-create", "true")
     spark_builder.config("spark.sql.defaultCatalog", "local")
     spark: SparkSession = spark_builder.getOrCreate()
